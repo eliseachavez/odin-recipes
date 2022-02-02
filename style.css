@@ -1,0 +1,16 @@
+body {
+    background-color: darkslategrey;
+    color: azure;
+    font-size: 1.1em;
+}
+
+.flex-container {
+	display: flex;
+}
+
+.flex-container div {
+background: peachpuff;
+  border: 4px solid brown;
+  height: 100px;
+  flex:1;
+}
