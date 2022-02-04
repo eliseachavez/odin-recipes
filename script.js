@@ -5,17 +5,35 @@ const container = document.querySelector('#container');
 makeGrid(16);
 
 function makeGrid(num) {
-
+//make a container row for num
+//each container row has num cells in it
+	//make the divs for each row
 	for (let i=1;i<num+1;i++) {
 		var container = document.querySelector('#container');
-		var div = document.createElement('div');
+		var divCol = document.createElement('div');
 
-		let concatWord = 'cell';
+		let concatWord = 'row';
 		let concatNum = i.toString();
 		let idName = concatWord.concat(concatNum);
 
-		div.setAttribute('id',`$(idName)`);
-		container.appendChild(div);
+		divCol.setAttribute('id',`${idName}`);
+		divCol.setAttribute('class','row');
+		container.appendChild(divCol);
+
+		//now append num new div nodes to that node just created
+		for(let j=1;j<num+1;j++) {
+                        var divRow = document.createElement('div');
+			
+			concatNum = j.toString();
+			concatWord = 'column';
+			idName = concatWord.concat(concatNum);
+			
+			divRow.setAttribute('id',`${idName}`);
+			divCol.setAttribute('class','column');
+			divCol.appendChild(divRow);
+
+                }
+
 
 	}
 }
