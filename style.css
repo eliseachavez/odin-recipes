@@ -1,16 +1,28 @@
-body {
-    background-color: darkslategrey;
+.flex-container {
+        display: flex;
+        flex-direction: column;
+}
+
+#input {
+    background-color: white;
     color: azure;
     font-size: 1.1em;
+    flex: 1;
 }
 
-.flex-container {
-	display: flex;
+.row {
+  background: white;
+  flex: 1;
+  border: 1px solid blue;
+  padding: 5%;
 }
 
-.flex-container div {
-background: peachpuff;
-  border: 4px solid brown;
-  height: 100px;
-  flex:1;
-}
+.column {
+  background: white;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  width: 5%;
+  height: 5%;
+
+}	 

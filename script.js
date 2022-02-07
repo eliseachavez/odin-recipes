@@ -1,23 +1,26 @@
 //input form for usesr to choose grid size
-//
-//default form created
-const container = document.querySelector('#container');
+const numberInputValue = document.getElementById('numInput').value;
+const button = document.getElementById('submit');
+button.addEventListener('click', makeGrid(numberInputValue));
+//default grid created
 makeGrid(16);
 
 function makeGrid(num) {
-//make a container row for num
+	clearGrid();
+	//make a container row for num
 //each container row has num cells in it
 	//make the divs for each row
 	for (let i=1;i<num+1;i++) {
 		var container = document.querySelector('#container');
 		var divCol = document.createElement('div');
 
-		let concatWord = 'row';
+		let concatWord = 'column';
 		let concatNum = i.toString();
 		let idName = concatWord.concat(concatNum);
 
 		divCol.setAttribute('id',`${idName}`);
-		divCol.setAttribute('class','row');
+		divCol.setAttribute('class','column');
+
 		container.appendChild(divCol);
 
 		//now append num new div nodes to that node just created
@@ -25,11 +28,11 @@ function makeGrid(num) {
                         var divRow = document.createElement('div');
 			
 			concatNum = j.toString();
-			concatWord = 'column';
+			concatWord = 'row';
 			idName = concatWord.concat(concatNum);
 			
 			divRow.setAttribute('id',`${idName}`);
-			divCol.setAttribute('class','column');
+			divRow.setAttribute('class','row');
 			divCol.appendChild(divRow);
 
                 }
@@ -38,5 +41,33 @@ function makeGrid(num) {
 	}
 }
 
+function clearGrid() {
+	var container = document.getElementById('container');
+	const label = container.removeChild(container.firstChild);
+	const number = container.removeChild(container.firstChild);
+	const submit = container.removeChild(container.firstChild);
+
+	while (container.firstChild) {
+		container.removeChild(container.firstChild);
+	}
+	
+	container.appendChild(label);
+	container.appendChild(number);
+	container.appendChild(submit);
+}
 
 ////hover event that changes div colors? and then do they need to change back? no, that doesn't make sense
+const rows = document.querySelectorAll('.row');
+const columns = document.querySelectorAll('.column');
+
+rows.forEach((row) => {
+	row.addEventListener('mouseover', () => {
+		row.setAttribute('style', 'background: black');
+	});
+});
+
+columns.forEach((column) => {
+	column.addEventListener('mouseover', () => {
+		column.setAttribute('style', 'background: black');
+	});
+});
