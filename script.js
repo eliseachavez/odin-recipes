@@ -1,12 +1,25 @@
 //input form for usesr to choose grid size
 const numberInputValue = document.getElementById('numInput').value;
 const button = document.getElementById('submit');
-button.addEventListener('click', makeGrid(numberInputValue));
+const numberInput = document.getElementById('number'); 
+
+/*button.addEventListener('click', () => {
+	makeGrid(e);
+});
+this also works! But I prefer the one below for brevity. 
+I'd use the one above if I had more than one parameter
+Because it's a function inside a function. It will 
+evaluate the inside function first, but it won't have received 
+the event data that comes from the event listener fxn first
+*/
+
+//one of the mistakes I made below was not realizing the e itself is the value. no need to do e.value
+button.addEventListener('click', makeGrid);
 //default grid created
 makeGrid(16);
 
-function makeGrid(num) {
-	clearGrid();
+function makeGrid(e) {
+	var num = e;
 	//make a container row for num
 //each container row has num cells in it
 	//make the divs for each row
@@ -43,17 +56,19 @@ function makeGrid(num) {
 
 function clearGrid() {
 	var container = document.getElementById('container');
+	const inputDiv = container.removeChild(container.firstChild);
 	const label = container.removeChild(container.firstChild);
 	const number = container.removeChild(container.firstChild);
-	const submit = container.removeChild(container.firstChild);
+	//const submit = container.removeChild(container.firstChild);
 
 	while (container.firstChild) {
 		container.removeChild(container.firstChild);
 	}
 	
+	container.appendChild(inputDiv);
 	container.appendChild(label);
 	container.appendChild(number);
-	container.appendChild(submit);
+	//container.appendChild(submit);
 }
 
 ////hover event that changes div colors? and then do they need to change back? no, that doesn't make sense
