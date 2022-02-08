@@ -1,0 +1,40 @@
+BlizZard — Today at 9:52 PM
+By callback function, I refer to the function you pass in as a parameter to the eventListener. 
+button.addEventListener('click', makeGrid); // Here, the makeGrid function is a callback function
+
+And about the second part, what I meant was that when the function you're passing in as an argument only takes one parameter, the event parameter, then you shouldn't specify event as an argument to the callback function. So, 
+button.addEventListener('click', makeGrid(e)); // You shouldn't specify the e parameter here.
+
+Whenever a function with parantheses or with parameters is used inside another function, the browser goes to that line, looks at those parantheses, and then immediately calls that function without caring for the context or the event listener in this case.
+ If you want to use parameters with a function inside of another function, you'll have to create an anonymous function to make the browser care for the context.
+function sayHello(name){
+console.log(name)
+}
+button.addEventListener("click",()=>{
+sayHello("Some name") // You'll have to do this to make the browser care for the context
+}
+
+
+
+
+
+
+
+The event parameter does get passed into the callback function by default but only if you specify it inside the original function you are calling. In my last code example,
+// I haven't specified the event parameter inside the sayHello function
+function sayHello(name){
+console.log(name)
+}
+button.addEventListener("click",()=>{
+sayHello("Some name") // You'll have to do this to make the browser care for the context
+}) 
+
+function logEvent(e){ // Here, I've specified the event parameter inside my logEvent function
+console.log(e)
+}
+// So, I can use it like this:
+button.addEventListener("click",()=>{
+logEvent(e)
+})
+// Or, since my logEvent function only takes one parameter which is the e parameter
+button.addEventListener("click",logEvent) // The e parameter still gets passed into the function)
