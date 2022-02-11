@@ -8,9 +8,12 @@ defaultG(16);
 
 //make grid chosen from number input
 button.addEventListener('click', (e) => {
-	const num = number.value.toString();
-	console.log(num);
-	makeGrid(num);
+	const num = parseInt(number.value);
+	if((num >= 2 && num < 101) && (num%2===0)) {
+		makeGrid(num);
+	} else {
+		alert("Keep number between 2 and 100");
+	}
 });
 ///////////////////////////////////////////////
 
