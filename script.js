@@ -9,7 +9,7 @@ defaultG(16);
 //make grid chosen from number input
 button.addEventListener('click', (e) => {
 	const num = parseInt(number.value);
-	if((num >= 2 && num < 101) && (num%2===0)) {
+	if(num >= 2 && num < 101) {
 		makeGrid(num);
 	} else {
 		alert("Keep number between 2 and 100");
@@ -46,6 +46,7 @@ function defaultG(num) {
                         divCol.appendChild(divRow);
                 }
         }
+	draw();
 } 
 
 function makeGrid(num) {
@@ -79,6 +80,7 @@ function makeGrid(num) {
 			divCol.appendChild(divRow);
                 }
 	}
+	draw();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -88,18 +90,20 @@ function clearGrid() {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////hover event that changes div colors
-const rows = document.querySelectorAll('.row');
-const columns = document.querySelectorAll('.column');
+function draw() {
+	const rows = document.querySelectorAll('.row');
+	const columns = document.querySelectorAll('.column');
 
 
-rows.forEach((row) => {
-	row.addEventListener('mouseover', () => {
-		row.setAttribute('style', 'background: black');
+	rows.forEach((row) => {
+		row.addEventListener('mouseover', () => {
+			row.setAttribute('style', 'background: black');
+		});
 	});
-});
 
-columns.forEach((column) => {
-	column.addEventListener('mouseover', () => {
-		column.setAttribute('style', 'background: black');
+	columns.forEach((column) => {
+		column.addEventListener('mouseover', () => {
+			column.setAttribute('style', 'background: black');
+		});
 	});
-});
+}
